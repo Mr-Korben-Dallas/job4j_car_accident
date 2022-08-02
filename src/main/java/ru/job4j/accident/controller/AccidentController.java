@@ -8,17 +8,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.service.AccidentService;
+import ru.job4j.accident.service.AccidentTypeService;
 
 @Controller
 public class AccidentController {
     private final AccidentService service;
+    private final AccidentTypeService accidentTypeService;
 
-    public AccidentController(AccidentService service) {
+    public AccidentController(AccidentService service, AccidentTypeService accidentTypeService) {
         this.service = service;
+        this.accidentTypeService = accidentTypeService;
     }
 
     @GetMapping("/add")
-    public String add() {
+    public String add(Model model) {
+        model.addAttribute("types", accidentTypeService.findAll());
         return "accident/add";
     }
 
