@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.repository.AccidentMem;
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class AccidentService {
@@ -17,7 +18,11 @@ public class AccidentService {
         return store.findAll();
     }
 
-    public void create(Accident accident) {
-        store.create(accident);
+    public void createOrUpdate(Accident accident) {
+        store.createOrUpdate(accident);
+    }
+
+    public Optional<Accident> findById(Long id) {
+        return store.findById(id);
     }
 }

@@ -5,6 +5,7 @@ import ru.job4j.accident.model.Accident;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
@@ -24,9 +25,19 @@ public class AccidentMem {
         return accidents;
     }
 
-    public void create(Accident accident) {
-        accident.setId(accidentId.incrementAndGet());
-        accidents.add(accident);
+    public void createOrUpdate(Accident accident) {
+        if (accident.getId() == 0) {
+            accident.setId(accidentId.incrementAndGet());
+            accidents.add(accident);
+        } else {
+            accidents.set(accident.getId().intValue() - 1, accident);
+        }
     }
 
+    public Optional<Accident> findById(Long id) {
+        if (accidents.size() < id) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(accidents.get(id.intValue() - 1));
+    }
 }
