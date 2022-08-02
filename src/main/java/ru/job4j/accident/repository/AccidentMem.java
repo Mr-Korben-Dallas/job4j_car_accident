@@ -7,8 +7,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @Repository
-public class AccidentMem implements Store<Accident> {
-    @Override
+public class AccidentMem {
     public Collection<Accident> findAll() {
         return Arrays.asList(
                 new Accident(1L, "First", "Cur cotta messis?", "None of these ellipses will be lost in tragedies like collision courses in visions"),
