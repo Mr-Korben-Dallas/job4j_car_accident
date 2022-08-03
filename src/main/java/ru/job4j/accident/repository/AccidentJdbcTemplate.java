@@ -10,10 +10,10 @@ import java.util.Optional;
 @Repository
 public class AccidentJdbcTemplate {
     private final JdbcTemplate jdbc;
-    private final String ACCIDENT_CREATE = "insert into accidents (name, text, address) values (?, ?, ?)";
-    private final String ACCIDENT_FIND_ALL = "select * from accidents";
-    private final String ACCIDENT_UPDATE = "update accidents set name = ?, text = ?, address = ? where id = ?";
-    private final String ACCIDENT_FIND_BY_ID = "select * from accidents where id = ?";
+    private static final String TABLE_ACCIDENT_CREATE = "insert into accidents (name, text, address) values (?, ?, ?)";
+    private static final String TABLE_ACCIDENT_FIND_ALL = "select * from accidents";
+    private static final String TABLE_ACCIDENT_UPDATE = "update accidents set name = ?, text = ?, address = ? where id = ?";
+    private static final String TABLE_ACCIDENT_FIND_BY_ID = "select * from accidents where id = ?";
 
     public AccidentJdbcTemplate(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
@@ -21,7 +21,7 @@ public class AccidentJdbcTemplate {
 
     public Accident create(Accident accident) {
         jdbc.update(
-                ACCIDENT_CREATE,
+                TABLE_ACCIDENT_CREATE,
                 accident.getName(),
                 accident.getText(),
                 accident.getAddress()
@@ -30,12 +30,12 @@ public class AccidentJdbcTemplate {
     }
 
     public List<Accident> findAll() {
-        return jdbc.query(ACCIDENT_FIND_ALL, new AccidentMapper());
+        return jdbc.query(TABLE_ACCIDENT_FIND_ALL, new AccidentMapper());
     }
 
     public void update(Accident accident) {
         jdbc.update(
-                ACCIDENT_UPDATE,
+                TABLE_ACCIDENT_UPDATE,
                 accident.getName(),
                 accident.getText(),
                 accident.getAddress(),
@@ -44,6 +44,6 @@ public class AccidentJdbcTemplate {
     }
 
     public Optional<Accident> findById(Long id) {
-        return Optional.ofNullable(jdbc.queryForObject(ACCIDENT_FIND_BY_ID, new AccidentMapper(), id));
+        return Optional.ofNullable(jdbc.queryForObject(TABLE_ACCIDENT_FIND_BY_ID, new AccidentMapper(), id));
     }
 }
