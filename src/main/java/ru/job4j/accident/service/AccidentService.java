@@ -18,8 +18,12 @@ public class AccidentService {
         return store.findAll();
     }
 
-    public void createOrUpdate(Accident accident) {
-        store.createOrUpdate(accident);
+    public void create(Accident accident) {
+        store.create(accident);
+    }
+
+    public void update(Accident accident) {
+        store.update(accident);
     }
 
     public Optional<Accident> findById(Long id) {

@@ -26,9 +26,9 @@ public class AccidentController {
         return "accident/add";
     }
 
-    @PostMapping("/createOrUpdate")
-    public String createOrUpdate(@ModelAttribute Accident accident) {
-        service.createOrUpdate(accident);
+    @PostMapping("/create")
+    public String create(@ModelAttribute Accident accident) {
+        service.create(accident);
         return "redirect:/";
     }
 
@@ -39,5 +39,11 @@ public class AccidentController {
         }
         model.addAttribute("accident", service.findById(id).get());
         return "accident/update";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute Accident accident) {
+        service.update(accident);
+        return "redirect:/";
     }
 }

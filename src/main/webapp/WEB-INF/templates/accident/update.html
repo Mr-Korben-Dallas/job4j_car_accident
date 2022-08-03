@@ -10,7 +10,7 @@
                         Редатирование инцидента:
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/createOrUpdate}" th:object="${accident}" method="POST">
+                        <form th:action="@{/update}" th:object="${accident}" method="POST">
                             <input type="hidden" name="id" th:field="*{id}"/>
                             <div class="form-group">
                                 <label for="name">Имя</label>

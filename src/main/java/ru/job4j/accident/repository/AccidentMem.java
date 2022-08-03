@@ -3,7 +3,6 @@ package ru.job4j.accident.repository;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
-
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -25,13 +24,13 @@ public class AccidentMem {
         return accidents.values();
     }
 
-    public void createOrUpdate(Accident accident) {
-        if (accident.getId() == 0) {
-            accident.setId(accidentId.incrementAndGet());
-            accidents.put(accidentMapId.incrementAndGet(), accident);
-        } else {
-            accidents.replace(accident.getId(), accident);
-        }
+    public void create(Accident accident) {
+        accident.setId(accidentId.incrementAndGet());
+        accidents.put(accidentMapId.incrementAndGet(), accident);
+    }
+
+    public void update(Accident accident) {
+        accidents.replace(accident.getId(), accident);
     }
 
     public Optional<Accident> findById(Long id) {
