@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @Repository
 public class AccidentTypeMem {
     private final AtomicLong accidentTypeId = new AtomicLong();
-    Map<Long, AccidentType> accidentTypes = new HashMap<>();
+    private final Map<Long, AccidentType> accidentTypes = new HashMap<>();
     
     public AccidentTypeMem() {
         accidentTypes.put(accidentTypeId.incrementAndGet(), AccidentType.of(accidentTypeId.get(), "Две машины"));
