@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class AccidentMem {
     private final AtomicLong accidentId = new AtomicLong();
     private final AtomicLong accidentMapId = new AtomicLong();
-    Map<Long, Accident> accidents = new HashMap<>();
+    private final Map<Long, Accident> accidents = new HashMap<>();
 
     public AccidentMem() {
         accidents.put(accidentMapId.incrementAndGet(), new Accident(accidentId.incrementAndGet(), "First", "Cur cotta messis?", "None of these ellipses will be lost in tragedies like collision courses in visions", AccidentType.of(1L, "Две машины")));
