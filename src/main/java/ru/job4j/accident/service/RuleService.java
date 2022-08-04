@@ -2,16 +2,17 @@ package ru.job4j.accident.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.RuleMem;
+import ru.job4j.accident.repository.RuleJdbcTemplate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 public class RuleService {
-    private final RuleMem store;
+    private final RuleJdbcTemplate store;
 
-    public RuleService(RuleMem store) {
+    public RuleService(RuleJdbcTemplate store) {
         this.store = store;
     }
 
@@ -19,7 +20,7 @@ public class RuleService {
         return store.findAll();
     }
 
-    public Rule findById(Long id) {
+    public Optional<Rule> findById(Long id) {
         return store.findById(id);
     }
 
