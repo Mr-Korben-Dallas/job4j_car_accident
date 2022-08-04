@@ -1,4 +1,4 @@
-package ru.job4j.accident.config.core;
+package ru.job4j.accident.config.persistence;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

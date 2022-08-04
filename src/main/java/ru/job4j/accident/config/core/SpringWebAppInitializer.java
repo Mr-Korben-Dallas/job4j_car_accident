@@ -4,6 +4,8 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import ru.job4j.accident.config.persistence.SpringDataConfig;
+import ru.job4j.accident.config.security.WebSecurityConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 import javax.servlet.FilterRegistration;
@@ -14,6 +16,7 @@ public class SpringWebAppInitializer implements WebApplicationInitializer {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.register(Thymeleaf.class);
         context.register(SpringDataConfig.class);
+        context.register(WebSecurityConfig.class);
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
