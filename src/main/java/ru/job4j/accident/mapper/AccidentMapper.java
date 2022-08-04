@@ -1,6 +1,8 @@
-package ru.job4j.accident.model;
+package ru.job4j.accident.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
+import ru.job4j.accident.model.Accident;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

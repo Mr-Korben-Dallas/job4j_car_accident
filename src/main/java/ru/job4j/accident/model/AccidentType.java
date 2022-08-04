@@ -1,8 +1,13 @@
 package ru.job4j.accident.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "accident_types")
 public class AccidentType {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
@@ -38,7 +43,7 @@ public class AccidentType {
             return false;
         }
         AccidentType that = (AccidentType) o;
-        return id == that.id;
+        return Objects.equals(id, that.id);
     }
 
     @Override
