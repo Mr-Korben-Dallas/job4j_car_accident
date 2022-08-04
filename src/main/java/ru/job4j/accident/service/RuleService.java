@@ -2,22 +2,21 @@ package ru.job4j.accident.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.RuleHibernate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Optional;
-import java.util.Set;
+import ru.job4j.accident.repository.RuleRepository;
+import java.util.*;
 
 @Service
 public class RuleService {
-    private final RuleHibernate store;
+    private final RuleRepository store;
 
-    public RuleService(RuleHibernate store) {
+    public RuleService(RuleRepository store) {
         this.store = store;
     }
 
     public Collection<Rule> findAll() {
-        return store.findAll();
+        List<Rule> rules = new ArrayList<>();
+        store.findAll().forEach(rules::add);
+        return rules;
     }
 
     public Optional<Rule> findById(Long id) {
@@ -25,6 +24,6 @@ public class RuleService {
     }
 
     public Set<Rule> fetchByIds(ArrayList<Long> ruleIds) {
-        return store.fetchByIds(ruleIds);
+        return new HashSet<>((Collection) store.findAllById(ruleIds));
     }
 }
