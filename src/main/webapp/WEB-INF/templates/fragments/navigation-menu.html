@@ -15,6 +15,10 @@
                             <span>Имя пользователя: </span>
                             <span th:text="${user.username}"></span>
                         </a>
+
+                        <a class="nav-item nav-link" th:if="${user == null}">
+                            <a class="nav-item nav-link" th:href="@{/signup}">Регистрация</a>
+                        </a>
                     </div>
                 </div>
             </nav>
